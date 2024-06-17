@@ -10,6 +10,9 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
+    private  String userName;
+
+    @Column(nullable = false)
     private String firstName;
 
     @Column(nullable = false)
@@ -82,6 +85,14 @@ public class User {
 
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
 
