@@ -17,14 +17,11 @@ public class CustomUserDetails implements UserDetails {
         this.user = user;
     }
 
-
     //private Collection<? extends GrantedAuthority> authorities;
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(user.getRole().getRole());
+        return Collections.singleton(new SimpleGrantedAuthority(user.getRole().getRole()));
     }
 
     @Override

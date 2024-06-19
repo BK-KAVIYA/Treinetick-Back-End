@@ -4,13 +4,16 @@ import com.treinetick.model.CustomUserDetails;
 import com.treinetick.model.User;
 import com.treinetick.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -18,25 +21,32 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    @Bean
+    public PasswordEncoder passwordEncoder()
+    {
+        return new BCryptPasswordEncoder();
     }
 
-    public User getUserById(Long id) {
+    public Optional<User> findByUsername(String userName) {
+        return userRepository.findByUserName(userName);
+    }
+
+    public User getUserById(UUID id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User saveUser(User user) {
+    // Method to check if a user with the given username already exists
+    public boolean existsByUsername(String userName) {
+        Optional<User> existingUser = userRepository.findByUserName(userName);
+        return existingUser.isPresent();
+    }
+
+    public User save(User user) {
+        user.setPassword(passwordEncoder().encode(user.getPassword()));
+        user.setId(UUID.randomUUID().toString());
+        System.out.println(user.getId());
+        System.out.println(user.toString());
         return userRepository.save(user);
-    }
-
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-
-    public void deleteUser(Long id) {
-        userRepository.deleteById(id);
     }
 
     @Override

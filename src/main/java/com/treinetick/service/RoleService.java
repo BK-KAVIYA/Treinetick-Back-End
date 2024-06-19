@@ -17,16 +17,16 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
-    public Role getRoleById(Long id) {
-        return roleRepository.findById(id).orElse(null);
-    }
+//    public Role getRoleById(int id) {
+//        return roleRepository.findById(id).orElse(null);
+//    }
 
     public Role saveRole(Role role) {
         return roleRepository.save(role);
     }
 
-    public void deleteRole(Long id) {
-        roleRepository.deleteById(id);
-    }
+//    public void deleteRole(int id) {
+//        roleRepository.deleteById(id);
+//    }
 }
 
