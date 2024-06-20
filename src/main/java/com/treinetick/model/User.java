@@ -2,9 +2,7 @@ package com.treinetick.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UuidGenerator;
 
-import java.util.UUID;
 
 @Entity
 public class User {

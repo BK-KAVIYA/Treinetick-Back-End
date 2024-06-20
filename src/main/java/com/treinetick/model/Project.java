@@ -1,6 +1,7 @@
 package com.treinetick.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 
@@ -9,9 +10,13 @@ import java.util.Date;
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+            strategy = "org.hibernate.id.UUIDGenerator"
+    )
     @Column(name = "projectID", nullable = false)
-    private Integer projectId;
+    private String projectId;
 
     @Column(name = "projectName", length = 75)
     private String projectName;
@@ -46,11 +51,11 @@ public class Project {
 
     // Getters and Setters
 
-    public Integer getProjectId() {
+    public String getProjectId() {
         return projectId;
     }
 
-    public void setProjectId(Integer projectId) {
+    public void setProjectId(String projectId) {
         this.projectId = projectId;
     }
 
