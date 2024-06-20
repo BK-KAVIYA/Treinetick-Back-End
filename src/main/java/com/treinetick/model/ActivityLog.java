@@ -19,7 +19,7 @@ public class ActivityLog {
     private String logId;
 
     @Column(name = "userID", nullable = false)
-    private Integer userId;
+    private String userId;
 
     @Column(name = "action", length = 255)
     private String action;
@@ -42,11 +42,11 @@ public class ActivityLog {
         this.logId = logId;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

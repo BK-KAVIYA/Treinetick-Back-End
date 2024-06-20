@@ -33,8 +33,15 @@ public class Comment {
     @Column(name = "TaskID", nullable = false)
     private Integer taskId;
 
-    @Column(name = "user_ID", nullable = false)
-    private Integer userId;
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_Id", insertable = false, updatable = false)
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "task_id", insertable = false, updatable = false)
+    private Task task;
 
     // Getters and Setters
 
@@ -78,12 +85,12 @@ public class Comment {
         this.taskId = taskId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 }
 

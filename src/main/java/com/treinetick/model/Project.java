@@ -54,6 +54,10 @@ public class Project {
     @JoinColumn(name = "project_id",referencedColumnName = "projectID")
     private Set<Task>taskList;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id",referencedColumnName = "projectID")
+    private Set<Milestone>milestonesList;
+
 //    @OneToMany(mappedBy = "project")
 //    private Set<Task> taskSet;
 

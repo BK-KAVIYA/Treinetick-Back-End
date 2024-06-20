@@ -43,9 +43,18 @@ public class User {
     @Column(name = "contact_number")
     private String contactNumber;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "user_id",referencedColumnName = "id")
-//    private Set<Task>taskList;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<Task>taskList;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<TimeEntry>timeEntries;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<Comment>commentSet;
+
 
     public String getId() {
         return id;

@@ -40,6 +40,11 @@ public class Milestone {
     @Temporal(TemporalType.DATE)
     private Date updatedAt;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id", insertable = false, updatable = false)
+    private Project project;
+
+
     // Getters and Setters
 
     public String getMilestoneId() {
