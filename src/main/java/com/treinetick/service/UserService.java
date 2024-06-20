@@ -5,6 +5,7 @@ import com.treinetick.model.User;
 import com.treinetick.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,17 +23,19 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    @Bean
-    public PasswordEncoder passwordEncoder()
-    {
-        return new BCryptPasswordEncoder();
-    }
+    private PasswordEncoder passwordEncoder;
+
+//    @Bean
+//    public PasswordEncoder passwordEncoder()
+//    {
+//        return new BCryptPasswordEncoder();
+//    }
 
     public Optional<User> findByUsername(String userName) {
         return userRepository.findByUserName(userName);
     }
 
-    public User getUserById(UUID id) {
+    public User getUserById(String id) {
         return userRepository.findById(id).orElse(null);
     }
 
@@ -42,10 +46,8 @@ public class UserService implements UserDetailsService {
     }
 
     public User save(User user) {
-        user.setPassword(passwordEncoder().encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setId(UUID.randomUUID().toString());
-        System.out.println(user.getId());
-        System.out.println(user.toString());
         return userRepository.save(user);
     }
 
@@ -54,5 +56,15 @@ public class UserService implements UserDetailsService {
         User user = findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return new CustomUserDetails(user);
     }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
 }
+
+
 
