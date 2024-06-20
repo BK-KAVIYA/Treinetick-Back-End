@@ -1,9 +1,12 @@
 package com.treinetick.model;
 
+import com.itextpdf.text.List;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity
@@ -40,7 +43,9 @@ public class User {
     @Column(name = "contact_number")
     private String contactNumber;
 
-    // Getters and Setters
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "user_id",referencedColumnName = "id")
+//    private Set<Task>taskList;
 
     public String getId() {
         return id;

@@ -50,6 +50,10 @@ public class Task {
     @Column(name = "project_ID", length = 255)
     private String projectId;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id", insertable = false, updatable = false)
+    private Project project;
+
     // Getters and Setters
 
     public String getTaskId() {

@@ -31,6 +31,7 @@ public class ActivityLog {
     @Column(name = "task_ID", length = 255)
     private String taskId;
 
+
     // Getters and Setters
 
     public String getLogId() {

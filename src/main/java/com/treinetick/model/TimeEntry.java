@@ -25,7 +25,7 @@ public class TimeEntry {
     @Column(name = "user_ID", nullable = false)
     private Integer userId;
 
-    @Column(name = "timeSpent", precision = 5, scale = 2)
+    @Column(name = "timeSpent", precision = 5)
     private Double timeSpent;
 
     @Column(name = "entryDate")

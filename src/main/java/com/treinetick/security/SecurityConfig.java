@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> {
                     auth.requestMatchers("/", "/auth/login", "/auth/register","/register", "/auth/{username}", "/auth/{id}").permitAll();
-                    auth.anyRequest().authenticated();
+                    //auth.anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 //.httpBasic(withDefaults())

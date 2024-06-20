@@ -37,6 +37,13 @@ public class Report {
     @Column(name = "ProjectID", nullable = false)
     private Integer projectId;
 
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
+
+    @Column(name = "updateAt")
+    @Temporal(TemporalType.DATE)
+    private Date updatedAt;
     // Getters and Setters
 
     public String getReportId() {

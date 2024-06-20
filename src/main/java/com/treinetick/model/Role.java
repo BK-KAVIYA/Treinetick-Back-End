@@ -2,6 +2,8 @@ package com.treinetick.model;
 
 
 import jakarta.persistence.*;
+
+import java.util.Date;
 import java.util.Set;
 
 @Entity
@@ -15,6 +17,14 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     private Set<User> users;
+
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
+
+    @Column(name = "updateAt")
+    @Temporal(TemporalType.DATE)
+    private Date updatedAt;
 
     // Getters and Setters
     public int getId() {
