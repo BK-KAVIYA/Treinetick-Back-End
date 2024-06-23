@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -58,8 +59,8 @@ public class Project {
     @JoinColumn(name = "project_id",referencedColumnName = "projectID")
     private Set<Milestone>milestonesList;
 
-//    @OneToMany(mappedBy = "project")
-//    private Set<Task> taskSet;
+    @ManyToMany(mappedBy = "assignedProjects")
+    private Set<User> userSet = new HashSet<>();
 
     // Getters and Setters
 

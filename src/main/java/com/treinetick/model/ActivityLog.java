@@ -18,8 +18,10 @@ public class ActivityLog {
     @Column(name = "logID", nullable = false)
     private String logId;
 
-    @Column(name = "userID", nullable = false)
-    private String userId;
+
+    @ManyToOne
+    @JoinColumn(name = "userID", insertable = false, updatable = false)
+    private User user;
 
     @Column(name = "action", length = 255)
     private String action;
@@ -42,12 +44,12 @@ public class ActivityLog {
         this.logId = logId;
     }
 
-    public String getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAction() {
