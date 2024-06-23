@@ -21,7 +21,7 @@ public class JwtAuthenticationFilter implements Filter {
     private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    private UserService userDetailsService;
+    private UserService userService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter implements Filter {
         // Inside doFilter method
         if (token != null && jwtTokenProvider.validateToken(token)) {
             String username = jwtTokenProvider.getUsername(token);
-            var userDetails = userDetailsService.loadUserByUsername(username);
+            var userDetails = userService.loadUserByUsername(username);
 
             // Create authentication token
             var authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
