@@ -23,7 +23,7 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
 //    @Bean
