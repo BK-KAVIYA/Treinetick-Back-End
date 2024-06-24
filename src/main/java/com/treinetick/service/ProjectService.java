@@ -31,24 +31,7 @@ public class ProjectService {
     }
 
     // Update an existing project
-    public Project updateProject(String projectId, Project projectDetails) {
-        Optional<Project> optionalProject = projectRepository.findById(projectId);
-        if (optionalProject.isPresent()) {
-            Project project = optionalProject.get();
-            project.setProjectName(projectDetails.getProjectName());
-            project.setDescription(projectDetails.getDescription());
-            project.setStartDate(projectDetails.getStartDate());
-            project.setEndDate(projectDetails.getEndDate());
-            project.setStatus(projectDetails.getStatus());
-            project.setUserId(projectDetails.getUserId());
-            project.setClientId(projectDetails.getClientId());
-            project.setCreatedAt(projectDetails.getCreatedAt());
-            project.setUpdatedAt(projectDetails.getUpdatedAt());
-            return projectRepository.save(project);
-        } else {
-            throw new RuntimeException("Project not found with id " + projectId);
-        }
-    }
+
 
     // Delete a project by its ID
     public void deleteProject(String projectId) {
