@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Task")
@@ -50,6 +51,17 @@ public class Task {
     @Column(name = "project_ID", length = 255)
     private String projectId;
 
+    @ManyToOne
+    @JoinColumn(name = "project_id", insertable = false, updatable = false)
+    private Project project;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id",referencedColumnName = "taskID")
+    private Set<Comment> commentList;
     // Getters and Setters
 
     public String getTaskId() {

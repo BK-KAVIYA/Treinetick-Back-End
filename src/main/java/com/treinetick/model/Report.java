@@ -37,6 +37,17 @@ public class Report {
     @Column(name = "ProjectID", nullable = false)
     private Integer projectId;
 
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.DATE)
+    private Date createdAt;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id",referencedColumnName = "projectID")
+    private Project project;
+
+    @Column(name = "updateAt")
+    @Temporal(TemporalType.DATE)
+    private Date updatedAt;
     // Getters and Setters
 
     public String getReportId() {

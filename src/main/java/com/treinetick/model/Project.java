@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "Project")
@@ -48,6 +50,17 @@ public class Project {
     @Column(name = "updateAt")
     @Temporal(TemporalType.DATE)
     private Date updatedAt;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id",referencedColumnName = "projectID")
+    private Set<Task>taskList;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "project_id",referencedColumnName = "projectID")
+    private Set<Milestone>milestonesList;
+
+    @ManyToMany(mappedBy = "assignedProjects")
+    private Set<User> userSet = new HashSet<>();
 
     // Getters and Setters
 

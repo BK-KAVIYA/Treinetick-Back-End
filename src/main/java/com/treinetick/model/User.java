@@ -1,7 +1,13 @@
 package com.treinetick.model;
 
+import com.itextpdf.text.List;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
+
+
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -38,7 +44,25 @@ public class User {
     @Column(name = "contact_number")
     private String contactNumber;
 
-    // Getters and Setters
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<Task>taskList;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<TimeEntry>timeEntries;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<Comment>commentSet;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    private Set<ActivityLog>activityLogs;
+
+    @ManyToMany
+    @JoinTable(name = "user_project",joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private Set<Project> assignedProjects = new HashSet<>();
 
     public String getId() {
         return id;

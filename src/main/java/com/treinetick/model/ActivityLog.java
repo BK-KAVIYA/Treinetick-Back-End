@@ -18,8 +18,10 @@ public class ActivityLog {
     @Column(name = "logID", nullable = false)
     private String logId;
 
-    @Column(name = "userID", nullable = false)
-    private Integer userId;
+
+    @ManyToOne
+    @JoinColumn(name = "userID", insertable = false, updatable = false)
+    private User user;
 
     @Column(name = "action", length = 255)
     private String action;
@@ -31,6 +33,7 @@ public class ActivityLog {
     @Column(name = "task_ID", length = 255)
     private String taskId;
 
+
     // Getters and Setters
 
     public String getLogId() {
@@ -41,12 +44,12 @@ public class ActivityLog {
         this.logId = logId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getAction() {

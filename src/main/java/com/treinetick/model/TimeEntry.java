@@ -22,9 +22,6 @@ public class TimeEntry {
     @Column(name = "task_ID", nullable = false)
     private Integer taskId;
 
-    @Column(name = "user_ID", nullable = false)
-    private Integer userId;
-
     @Column(name = "timeSpent", precision = 5)
     private Double timeSpent;
 
@@ -39,6 +36,10 @@ public class TimeEntry {
     @Column(name = "updateAt")
     @Temporal(TemporalType.DATE)
     private Date updatedAt;
+
+    @ManyToOne
+    @JoinColumn(name = "user_Id", insertable = false, updatable = false)
+    private User user;
 
     // Getters and Setters
 
@@ -58,12 +59,12 @@ public class TimeEntry {
         this.taskId = taskId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUserId() {
+        return user;
     }
 
     public void setUserId(Integer userId) {
-        this.userId = userId;
+        this.user = user;
     }
 
     public Double getTimeSpent() {
