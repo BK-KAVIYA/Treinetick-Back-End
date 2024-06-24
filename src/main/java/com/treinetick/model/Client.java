@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "Client")
@@ -37,6 +38,18 @@ public class Client {
     @Column(name = "updateAt")
     @Temporal(TemporalType.DATE)
     private Date updatedAt;
+
+    public Set<Project> getProjectSet() {
+        return projectSet;
+    }
+
+    public void setProjectSet(Set<Project> projectSet) {
+        this.projectSet = projectSet;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clientID",referencedColumnName = "clientID")
+    private Set<Project> projectSet;
 
     // Getters and Setters
 

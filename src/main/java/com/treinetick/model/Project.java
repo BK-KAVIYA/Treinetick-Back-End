@@ -40,8 +40,6 @@ public class Project {
     @Column(name = "user_ID", length = 255)
     private String userId;
 
-    @Column(name = "client_ID", length = 45)
-    private String clientId;
 
     @Column(name = "createdAt")
     @Temporal(TemporalType.DATE)
@@ -61,6 +59,10 @@ public class Project {
 
     @ManyToMany(mappedBy = "assignedProjects")
     private Set<User> userSet = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "client_ID", insertable = false, updatable = false)
+    private Client client;
 
     // Getters and Setters
 
@@ -120,12 +122,12 @@ public class Project {
         this.userId = userId;
     }
 
-    public String getClientId() {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(String clientId) {
-        this.clientId = clientId;
+    public void setClient(Client clientId) {
+        this.client = client;
     }
 
     public Date getCreatedAt() {
