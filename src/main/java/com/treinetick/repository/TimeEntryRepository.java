@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TimeEntryRepository extends JpaRepository<TimeEntry, String> {
-//    Optional<User> findByProjectID(String projectID);
+
 }
 
