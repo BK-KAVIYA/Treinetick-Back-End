@@ -22,12 +22,14 @@ public class TimeEntry {
     @Column(name = "task_ID", nullable = false)
     private Integer taskId;
 
-    @Column(name = "timeSpent", precision = 5)
-    private Double timeSpent;
 
-    @Column(name = "entryDate")
-    @Temporal(TemporalType.DATE)
-    private Date entryDate;
+    @Column(name = "timeStart")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeStart;
+
+    @Column(name = "timeEnd")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date timeEnd;
 
     @Column(name = "createdAt")
     @Temporal(TemporalType.DATE)
@@ -67,22 +69,6 @@ public class TimeEntry {
         this.user = user;
     }
 
-    public Double getTimeSpent() {
-        return timeSpent;
-    }
-
-    public void setTimeSpent(Double timeSpent) {
-        this.timeSpent = timeSpent;
-    }
-
-    public Date getEntryDate() {
-        return entryDate;
-    }
-
-    public void setEntryDate(Date entryDate) {
-        this.entryDate = entryDate;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -97,6 +83,30 @@ public class TimeEntry {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Date getTimeStart() {
+        return timeStart;
+    }
+
+    public void setTimeStart(Date timeStart) {
+        this.timeStart = timeStart;
+    }
+
+    public Date getTimeEnd() {
+        return timeEnd;
+    }
+
+    public void setTimeEnd(Date timeEnd) {
+        this.timeEnd = timeEnd;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
 
