@@ -19,9 +19,9 @@ public class TimeEntry {
     @Column(name = "timeEntryID", nullable = false)
     private String timeEntryId;
 
-    @Column(name = "task_ID", nullable = false)
-    private Integer taskId;
-
+    @ManyToOne
+    @JoinColumn(name = "project_id", insertable = false, updatable = false)
+    private Project project;
 
     @Column(name = "timeStart")
     @Temporal(TemporalType.TIMESTAMP)
@@ -30,6 +30,12 @@ public class TimeEntry {
     @Column(name = "timeEnd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeEnd;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "tag")
+    private String tag;
 
     @Column(name = "createdAt")
     @Temporal(TemporalType.DATE)
@@ -51,14 +57,6 @@ public class TimeEntry {
 
     public void setTimeEntryId(String timeEntryId) {
         this.timeEntryId = timeEntryId;
-    }
-
-    public Integer getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(Integer taskId) {
-        this.taskId = taskId;
     }
 
     public User getUserId() {
@@ -108,5 +106,14 @@ public class TimeEntry {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
 }
 

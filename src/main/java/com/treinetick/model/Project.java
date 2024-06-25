@@ -49,9 +49,10 @@ public class Project {
     @Temporal(TemporalType.DATE)
     private Date updatedAt;
 
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id",referencedColumnName = "projectID")
-    private Set<Task>taskList;
+    private Set<TimeEntry>timeEntrySet;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id",referencedColumnName = "projectID")
