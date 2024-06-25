@@ -11,6 +11,7 @@ import java.util.Set;
 @Table(name = "Project")
 public class Project {
 
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -50,11 +51,10 @@ public class Project {
     private Date updatedAt;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "project_id",referencedColumnName = "projectID")
-    private Set<TimeEntry>timeEntrySet;
+    @OneToMany(mappedBy = "project")
+    private Set<TimeEntry> timeEntrySet;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "project")
     @JoinColumn(name = "project_id",referencedColumnName = "projectID")
     private Set<Milestone>milestonesList;
 
@@ -62,10 +62,11 @@ public class Project {
     private Set<User> userSet = new HashSet<>();
 
     @ManyToOne
-    @JoinColumn(name = "client_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "client_Id", insertable = false, updatable = false)
     private Client client;
 
     // Getters and Setters
+
 
     public String getProjectId() {
         return projectId;
@@ -123,14 +124,6 @@ public class Project {
         this.userId = userId;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client clientId) {
-        this.client = client;
-    }
-
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -145,5 +138,37 @@ public class Project {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public Set<TimeEntry> getTimeEntrySet() {
+        return timeEntrySet;
+    }
+
+    public void setTimeEntrySet(Set<TimeEntry> timeEntrySet) {
+        this.timeEntrySet = timeEntrySet;
+    }
+
+    public Set<Milestone> getMilestonesList() {
+        return milestonesList;
+    }
+
+    public void setMilestonesList(Set<Milestone> milestonesList) {
+        this.milestonesList = milestonesList;
+    }
+
+    public Set<User> getUserSet() {
+        return userSet;
+    }
+
+    public void setUserSet(Set<User> userSet) {
+        this.userSet = userSet;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

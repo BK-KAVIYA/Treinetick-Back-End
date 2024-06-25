@@ -47,8 +47,7 @@ public class Client {
         this.projectSet = projectSet;
     }
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clientID",referencedColumnName = "clientID")
+    @OneToMany(mappedBy = "client")
     private Set<Project> projectSet;
 
     // Getters and Setters

@@ -48,8 +48,7 @@ public class User {
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private Set<Task>taskList;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
+    @OneToMany(mappedBy = "user")
     private Set<TimeEntry>timeEntries;
 
     @OneToMany(cascade = CascadeType.ALL)

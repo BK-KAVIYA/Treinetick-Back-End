@@ -20,8 +20,16 @@ public class TimeEntry {
     private String timeEntryId;
 
     @ManyToOne
-    @JoinColumn(name = "project_id", insertable = false, updatable = false)
+    @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
+
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+
+
 
     @Column(name = "timeStart")
     @Temporal(TemporalType.TIMESTAMP)
@@ -30,6 +38,22 @@ public class TimeEntry {
     @Column(name = "timeEnd")
     @Temporal(TemporalType.TIMESTAMP)
     private Date timeEnd;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 
     @Column(name = "description")
     private String description;
@@ -46,7 +70,7 @@ public class TimeEntry {
     private Date updatedAt;
 
     @ManyToOne
-    @JoinColumn(name = "user_Id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_Id", nullable = false)
     private User user;
 
     // Getters and Setters
@@ -113,6 +137,14 @@ public class TimeEntry {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
 }
